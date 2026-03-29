@@ -13,6 +13,9 @@ from collections.abc import Iterable
 def find_fem(folder, Ka_name, Ma_name, grid):
     # TODO: add assertions
     if folder is not None:
+        print("folder exists:", pathlib.Path(folder).is_dir())
+        print("searching in folder:", Ka_name)
+        print("folder contains:", list(pathlib.Path(folder).glob(f"*")))
         Ka_path = list(pathlib.Path(folder).glob(f"**/*{Ka_name}"))[0].name
         Ma_path = list(pathlib.Path(folder).glob(f"**/*{Ma_name}"))[0].name
         if isinstance(grid, str):

@@ -26,9 +26,17 @@ inp.fem.connectivity = dict(# FusWing=['RWing',
                             LHTP=None,
                             )
 
-inp.fem.folder = pathlib.Path('./FEM/')
-inp.fem.eig_names = ["eigenvals_50.npy", "eigenvecs_50.npy"]
+# inp.fem.folder = pathlib.Path('./FEM/')
 inp.fem.num_modes = 50
+num_modes = 50
+sol = "cao"
+inp.fem.Ka_name = f"./FEM/Ka_{sol[:-1]}.npy"
+inp.fem.Ma_name = f"./FEM/Ma_{sol[:-1]}.npy"
+inp.fem.eig_names = [
+    f"./FEM/eigenvals_{sol}{num_modes}.npy",
+    f"./FEM/eigenvecs_{sol}{num_modes}.npy",
+]
+inp.fem.grid = f"./FEM/structuralGrid_{sol[:-1]}"
 inp.driver.typeof = "intrinsic"
 
 #inp.driver.sol_path = pathlib.Path(
@@ -50,10 +58,10 @@ inp.systems.sett.s1.t = [0., 0.25, 0.5, 0.75, 1]
 inp.systems.sett.s1.aero.c_ref = 3.
 inp.systems.sett.s1.aero.u_inf = 160.
 inp.systems.sett.s1.aero.rho_inf = 0.778
-inp.systems.sett.s1.aero.poles = "./AERO/PolesDd1c7F1Scao-50.npy"
-inp.systems.sett.s1.aero.A = f"./AERO/ADd1c7F1Scao-50.npy"
+inp.systems.sett.s1.aero.poles = "./AERO/PolesDd1c7F1Scao-50p5.npy"
+inp.systems.sett.s1.aero.A = f"./AERO/ADd1c7F3Scao-50p5.npy"
 #inp.systems.sett.s1.aero.C = f"./AERO/QhxDd1c7F1Scao-50.npy"
-inp.systems.sett.s1.aero.Q0_rigid = f"./AERO/QhxDd1c7F1Scao-50.npy"
+inp.systems.sett.s1.aero.Q0_rigid = f"./AERO/QhxDd1c7F2Scao-50.npy"
 inp.systems.sett.s1.aero.qalpha = jnp.array(([0.,  0., 0, 0, 0, 0],
                                              [0.,  4 * jnp.pi / 180, 0, 0, 0, 0]))
 
